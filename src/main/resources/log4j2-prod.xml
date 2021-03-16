@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="spring-boot-kafka-log" packages="com.prv">
+    <Appenders>
+        <Kafka name="kafka-logger" topic="ipm.project.log">
+            <PatternLayout pattern="%d{ISO8601} ${hostName} %p %F/%M:%L - %m%n"/>
+            <Property name="bootstrap.servers" value="10.125.22.135:9092"/>
+        </Kafka>
+        <Async name="Async">
+            <AppenderRef ref="kafka-logger"/>
+        </Async>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ISO8601} ${hostName} %-5p %F/%M:%L - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="kafka-logger"/>
+            <AppenderRef ref="stdout"/>
+        </Root>
+        <Logger name="org.apache.kafka" level="INFO" />
+    </Loggers>
+</Configuration>

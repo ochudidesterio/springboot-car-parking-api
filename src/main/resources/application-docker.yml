@@ -1,0 +1,21 @@
+spring:
+  profiles: prod
+  datasource:
+    jdbc-url: jdbc:postgresql://car-parking-db:5432/postgres
+    username: postgres
+    password: postgres
+  flyway:
+    user: postgres
+    password: postgres
+    url: jdbc:postgresql://car-parking-db:5432/postgres
+    enabled: true
+    check-location: false
+    locations: /db/migration/postgres
+
+
+logging.level.root: INFO
+logging.level.org.springframework.web: info
+logging.level.org.hibernate: INFO
+logging.level.com.example.RestService.api: INFO
+logging.level.com.example.RestService.service: INFO
+logging.config: "classpath:log4j2-prod.xml"
